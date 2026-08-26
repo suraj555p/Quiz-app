@@ -1,0 +1,93 @@
+generator client {
+  provider = "prisma-client"
+  output   = "../app/generated/prisma"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model User {
+  id        String   @id @default(cuid())
+  clerkId   String   @unique
+  username  String
+  email     String   @unique
+  profile   String?
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  subjects Subject[]
+  attempts QuizAttempt[]
+}
+
+model Subject {
+  id                String   @id @default(cuid())
+  subjectName       String
+  time              Int
+  numberOfquestions Int
+  positiveMarking   Int
+  negativeMarking   Float    @default(0)
+  userId            String
+  createdAt         DateTime @default(now())
+  updatedAt         DateTime @updatedAt
+
+  user      User          @relation(fields: [userId], references: [id], onDelete: Cascade)
+  questions Question[]
+  attempts  QuizAttempt[]
+
+  @@index([userId])
+}
+
+model Question {
+  id             String   @id @default(cuid())
+  subjectId      String
+  questionNumber Int
+  question       String
+  option1        String
+  option2        String
+  option3        String
+  option4        String
+  correctOption  Int
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  subject Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  answers AttemptAnswer[]
+
+  @@index([subjectId])
+}
+
+model QuizAttempt {
+  id             String   @id @default(cuid())
+  userId         String
+  subjectId      String
+  score          Float
+  totalMarks     Float
+  correctAnswers Int
+  wrongAnswers   Int
+  skippedAnswers Int
+  createdAt      DateTime @default(now())
+
+  user    User            @relation(fields: [userId], references: [id], onDelete: Cascade)
+  subject Subject         @relation(fields: [subjectId], references: [id], onDelete: Cascade)
+  answers AttemptAnswer[]
+
+  @@index([userId])
+  @@index([subjectId])
+}
+
+model AttemptAnswer {
+  id             String  @id @default(cuid())
+  attemptId      String
+  questionId     String
+  selectedOption Int?
+  isCorrect      Boolean
+  isMarked       Boolean @default(false)
+
+  attempt  QuizAttempt @relation(fields: [attemptId], references: [id], onDelete: Cascade)
+  question Question    @relation(fields: [questionId], references: [id], onDelete: Cascade)
+
+  @@unique([attemptId, questionId])
+  @@index([attemptId])
+  @@index([questionId])
+}
