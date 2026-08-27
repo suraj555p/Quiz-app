@@ -24,7 +24,10 @@ export default function ScoreDashboard({
 
   const percentage =
     totalMarks > 0
-      ? Math.max(0, Math.round((score / totalMarks) * 100))
+      ? Math.max(
+          0,
+          Math.round((score / totalMarks) * 100)
+        )
       : 0;
 
   return (
@@ -79,7 +82,11 @@ export default function ScoreDashboard({
           <StatCard
             icon={<FileCheck2 className="h-5 w-5" />}
             label="Total Questions"
-            value={correctAnswers + wrongAnswers + skippedAnswers}
+            value={
+              correctAnswers +
+              wrongAnswers +
+              skippedAnswers
+            }
             color="indigo"
           />
 
@@ -106,83 +113,164 @@ export default function ScoreDashboard({
         </section>
 
         {/* Question-wise result */}
-        <section className="mt-8 overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-          <div className="border-b border-slate-100 p-5 dark:border-slate-800">
-            <h2 className="text-lg font-extrabold text-slate-900 dark:text-white">
-              Question-wise Performance
-            </h2>
-
-            <p className="mt-1 text-sm text-slate-500 dark:text-slate-400">
-              Check your answer status for every question.
-            </p>
-          </div>
-
-          <div className="divide-y divide-slate-100 dark:divide-slate-800">
-            {answers.map((answer, index) => {
-              const status = answer.isSkipped
-                ? "Skipped"
-                : answer.isCorrect
-                  ? "Correct"
-                  : "Wrong";
-
-              return (
-                <div
-                  key={answer.id || answer.questionId}
-                  className="flex flex-col gap-4 p-5 sm:flex-row sm:items-center sm:justify-between"
-                >
-                  <div className="flex items-start gap-3">
-                    <div
-                      className={`flex h-9 w-9 shrink-0 items-center justify-center rounded-lg text-sm font-extrabold ${
-                        answer.isSkipped
-                          ? "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300"
-                          : answer.isCorrect
-                            ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
-                            : "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
-                      }`}
-                    >
-                      {answer.questionNumber || index + 1}
-                    </div>
-
-                    <div>
-                      <p className="text-sm font-bold text-slate-800 dark:text-slate-100">
-                        Question {answer.questionNumber || index + 1}
-                      </p>
-
-                      <p className="mt-1 text-xs text-slate-500 dark:text-slate-400">
-                        Your answer:{" "}
-                        {answer.selectedOption
-                          ? `Option ${answer.selectedOption}`
-                          : "Not attempted"}
-                      </p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3">
-                    <span
-                      className={`rounded-full px-3 py-1.5 text-xs font-extrabold ${
-                        answer.isSkipped
-                          ? "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300"
-                          : answer.isCorrect
-                            ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
-                            : "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
-                      }`}
-                    >
-                      {status}
-                    </span>
-
-                    {!answer.isSkipped && (
-                      <span className="text-xs font-semibold text-slate-400">
-                        Correct: Option {answer.correctOption}
-                      </span>
-                    )}
-                  </div>
-                </div>
-              );
-            })}
-          </div>
+        <section className="mt-8 space-y-5">
+          {answers.map((answer, index) => (
+            <QuestionReviewCard
+              key={answer.id || answer.questionId}
+              answer={answer}
+              index={index}
+            />
+          ))}
         </section>
       </div>
     </main>
+  );
+}
+
+function QuestionReviewCard({ answer, index }) {
+  const questionNumber = answer.questionNumber || index + 1;
+
+  const isSkipped = answer.isSkipped;
+  const isCorrect = answer.isCorrect;
+  const selectedOption = answer.selectedOption;
+  const correctOption = answer.correctOption;
+
+  const options = [
+    {
+      number: 1,
+      text: answer.option1,
+    },
+    {
+      number: 2,
+      text: answer.option2,
+    },
+    {
+      number: 3,
+      text: answer.option3,
+    },
+    {
+      number: 4,
+      text: answer.option4,
+    },
+  ];
+
+  return (
+    <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
+      {/* Card header */}
+      <div className="border-b border-slate-100 bg-slate-50/50 p-5 dark:border-slate-800 dark:bg-slate-800/40">
+        <div className="flex items-start gap-3">
+          <div
+            className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-lg text-sm font-extrabold ${
+              isSkipped
+                ? "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300"
+                : isCorrect
+                  ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
+                  : "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
+            }`}
+          >
+            {questionNumber}
+          </div>
+
+          <div className="min-w-0 flex-1">
+            <h2 className="text-base font-bold leading-7 text-slate-900 dark:text-white sm:text-lg">
+              Question {questionNumber}
+            </h2>
+
+            <p className="mt-1 text-sm leading-6 text-slate-700 dark:text-slate-200">
+              {answer.question}
+            </p>
+
+            <div className="mt-3 flex flex-wrap items-center gap-2">
+              <span
+                className={`rounded-full px-3 py-1.5 text-xs font-extrabold ${
+                  isSkipped
+                    ? "bg-amber-50 text-amber-700 dark:bg-amber-950/40 dark:text-amber-300"
+                    : isCorrect
+                      ? "bg-emerald-50 text-emerald-700 dark:bg-emerald-950/40 dark:text-emerald-300"
+                      : "bg-red-50 text-red-700 dark:bg-red-950/40 dark:text-red-300"
+                }`}
+              >
+                {isSkipped
+                  ? "Skipped"
+                  : isCorrect
+                    ? "Correct"
+                    : "Wrong"}
+              </span>
+
+              {!isSkipped && (
+                <span className="text-xs font-semibold text-slate-400">
+                  Correct: Option {correctOption}
+                </span>
+              )}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      {/* Options */}
+      <div className="p-5">
+        <div className="space-y-3">
+          {options.map((option) => {
+            const isSelected = selectedOption === option.number;
+            const isThisCorrect =
+              correctOption === option.number;
+
+            let optionClass =
+              "flex items-start gap-3 rounded-xl border p-4 transition-colors";
+
+            if (isSkipped) {
+              optionClass +=
+                " border-slate-200 bg-slate-50 text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300";
+            } else if (isThisCorrect) {
+              optionClass +=
+                " border-emerald-300 bg-emerald-50 text-emerald-800 dark:border-emerald-800 dark:bg-emerald-950/40 dark:text-emerald-200";
+            } else if (isSelected) {
+              optionClass +=
+                " border-red-300 bg-red-50 text-red-800 dark:border-red-800 dark:bg-red-950/40 dark:text-red-200";
+            } else {
+              optionClass +=
+                " border-slate-200 bg-white text-slate-600 dark:border-slate-700 dark:bg-slate-800/60 dark:text-slate-300";
+            }
+
+            return (
+              <div key={option.number} className={optionClass}>
+                <span
+                  className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full border text-xs font-extrabold ${
+                    isThisCorrect
+                      ? "border-emerald-600 bg-emerald-600 text-white"
+                      : isSelected && !isThisCorrect
+                        ? "border-red-600 bg-red-600 text-white"
+                        : "border-slate-300 bg-slate-50 text-slate-500 dark:border-slate-600 dark:bg-slate-700 dark:text-slate-300"
+                  }`}
+                >
+                  {String.fromCharCode(
+                    64 + option.number
+                  )}
+                </span>
+
+                <span className="flex-1 text-sm font-semibold leading-6">
+                  {option.text}
+                </span>
+
+                {isThisCorrect && (
+                  <span className="flex shrink-0 items-center gap-1 text-xs font-bold text-emerald-600 dark:text-emerald-400">
+                    <CheckCircle2 className="h-4 w-4" />
+                    Correct
+                  </span>
+                )}
+
+                {isSelected && !isThisCorrect && (
+                  <span className="flex shrink-0 items-center gap-1 text-xs font-bold text-red-600 dark:text-red-400">
+                    <XCircle className="h-4 w-4" />
+                    Your option
+                  </span>
+                )}
+              </div>
+            );
+          })}
+        </div>
+      </div>
+    </article>
   );
 }
 
