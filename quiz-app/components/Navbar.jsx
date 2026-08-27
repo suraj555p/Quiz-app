@@ -6,7 +6,8 @@ import {
   UserButton,
 } from "@clerk/nextjs";
 import Link from "next/link";
-import { BarChart3, Home, ShieldCheck, Trophy } from "lucide-react";
+import { Home, Trophy } from "lucide-react";
+import MobileNavMenu from "./MobileNavMenu";
 
 async function Navbar() {
   await syncUser();
@@ -18,7 +19,6 @@ async function Navbar() {
   return (
     <nav className="sticky top-0 z-50 w-full border-b border-slate-200/80 bg-white/90 backdrop-blur-xl">
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:h-[72px] lg:px-8">
-        {/* Logo */}
         <Link
           href="/"
           className="group flex items-center gap-2.5"
@@ -38,7 +38,6 @@ async function Navbar() {
           </div>
         </Link>
 
-        {/* Desktop Navigation */}
         <div className="flex items-center gap-2 sm:gap-3">
           <Show when="signed-in">
             <div className="mr-1 hidden items-center gap-1 rounded-full border border-slate-200 bg-slate-50 p-1 sm:flex">
@@ -67,9 +66,20 @@ async function Navbar() {
                   Admin
                 </Link>
               )}
+
+              {isAdmin && (
+                <Link
+                  href="/user_results"
+                  className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-slate-700 transition-all duration-200 hover:bg-white hover:text-slate-950 hover:shadow-sm"
+                >
+                  <span className="h-1.5 w-1.5 rounded-full" />
+                  User results
+                </Link>
+              )}
             </div>
 
-            {/* User */}
+            <MobileNavMenu isAdmin={isAdmin} />
+
             <div className="rounded-full border border-slate-200 bg-white p-0.5 shadow-sm transition-shadow hover:shadow-md">
               <UserButton
                 appearance={{
@@ -104,39 +114,6 @@ async function Navbar() {
           </Show>
         </div>
       </div>
-
-      {/* Mobile Navigation */}
-      <Show when="signed-in">
-        <div className="border-t border-slate-100 bg-white px-4 py-2 sm:hidden">
-          <div className="flex items-center gap-2">
-            <Link
-              href="/"
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950"
-            >
-              <Home className="h-4 w-4" />
-              Home
-            </Link>
-
-            <Link
-              href="/scores"
-              className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950"
-            >
-              <Trophy className="h-4 w-4 text-amber-500" />
-              Scores
-            </Link>
-
-            {isAdmin && (
-              <Link
-                href="/Admin_dashboard"
-                className="flex flex-1 items-center justify-center gap-1.5 rounded-lg px-3 py-2 text-sm font-semibold text-slate-700 transition-colors hover:bg-slate-100 hover:text-slate-950"
-              >
-                <ShieldCheck className="h-4 w-4 text-indigo-500" />
-                Admin
-              </Link>
-            )}
-          </div>
-        </div>
-      </Show>
     </nav>
   );
 }

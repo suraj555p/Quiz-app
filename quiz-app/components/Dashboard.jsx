@@ -1,11 +1,10 @@
 
-import { getSubject } from "../app/actions/admin.action";
+import { getSubject} from "../app/actions/admin.action";
 import SubjectCard from "./SubjectCart";
 import { BookOpen, Sparkles } from "lucide-react";
 
 export default async function Dashboard() {
   const result = await getSubject();
-
   const subjects = result.success ? result.data : [];
 
   return (

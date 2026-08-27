@@ -43,9 +43,6 @@ export default function QuizAttempt({
   const [currentIndex, setCurrentIndex] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // FIX: null = "timer abhi initialize nahi hua", 0 = "time khatam".
-  // Pehle ye `0` tha, jisse mount ke turant baad auto-submit effect
-  // ko lagta tha ki time khatam ho chuka hai.
   const [remainingSeconds, setRemainingSeconds] = useState(null);
 
   const hasAutoSubmitted = useRef(false);
@@ -77,10 +74,6 @@ export default function QuizAttempt({
     ).padStart(2, "0")}`;
   };
 
-  /*
-   * Timer initialize होगा।
-   * Refresh के बाद भी same end time use होगा।
-   */
   useEffect(() => {
     if (!timerStorageKey) return;
 
@@ -124,9 +117,6 @@ export default function QuizAttempt({
     timerStorageKey,
   ]);
 
-  /*
-   * Timer actual end timestamp से update होगा।
-   */
   useEffect(() => {
     if (!timerStorageKey) return;
     if (isSubmitting) return;
@@ -303,12 +293,6 @@ export default function QuizAttempt({
     ]
   );
 
-  /*
-   * Timer 00:00 पर auto-submit होगा।
-   * FIX: remainingSeconds === null ka matlab hai timer abhi
-   * initialize hi nahi hua — us case me auto-submit nahi chalana.
-   * Sirf tab chalao jab timer explicitly 0 tak pahunche.
-   */
   useEffect(() => {
     if (remainingSeconds === null) return;
     if (remainingSeconds !== 0) return;
@@ -362,7 +346,6 @@ export default function QuizAttempt({
       />
 
       <div className="mx-auto max-w-4xl lg:ml-[320px] lg:max-w-4xl">
-        {/* Back link and timer */}
         <div className="mb-6 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
           <Link
             href="/"
@@ -389,7 +372,6 @@ export default function QuizAttempt({
           </div>
         </div>
 
-        {/* Header */}
         <section className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
           <div className="absolute inset-x-0 top-0 h-1 bg-indigo-600" />
 
@@ -442,7 +424,6 @@ export default function QuizAttempt({
           </div>
         </section>
 
-        {/* Progress bar */}
         <div className="mb-5">
           <div className="mb-2 flex items-center justify-between text-xs font-bold text-slate-400">
             <span>
@@ -472,7 +453,6 @@ export default function QuizAttempt({
           </div>
         </div>
 
-        {/* Current question */}
         <section className="space-y-5">
           <QuestionCard
             key={currentQuestion.id}
@@ -485,7 +465,6 @@ export default function QuizAttempt({
             onClearResponse={handleClearResponse}
           />
 
-          {/* Navigation */}
           <div className="flex items-center justify-between gap-3 rounded-2xl border border-slate-200 bg-white p-4 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-5">
             <button
               type="button"

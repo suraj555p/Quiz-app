@@ -178,3 +178,80 @@ export const deleteSubject = async({id}) =>{
        return {success:false, message: "Something went wrong"};
    }
 }
+
+export const getUsersResults = async ()=>{
+  try {
+      const user = await dbUser();
+      if(!user || user.email!==process.env.ADMIN_EMAIL) 
+       return {success:false, message: "admin user is not logged in !"};
+
+      const allUserResults = await prisma.quizAttempt.findMany({
+         include:{
+           user: {
+             select : {
+                username: true,
+                email: true,
+                profile: true,
+             }
+           },
+           subject: {
+              select : {
+                 subjectName: true,
+              }
+           }
+         },
+         orderBy:{
+           createdAt : "desc",
+         },
+      });
+
+      return {success: true, data: allUserResults};
+
+  } catch (error) {
+     return {success: false , message: "error in getting all users results !"}
+  }
+}
+
+export const deleteUserResult = async (attemptId) => {
+  try {
+    const user = await dbUser();
+
+    if (!user || user.email !== process.env.ADMIN_EMAIL) {
+      return {
+        success: false,
+        message: "Admin user is not authorized!",
+      };
+    }
+
+    const result = await prisma.quizAttempt.findUnique({
+      where: {
+        id: attemptId,
+      },
+    });
+
+    if (!result) {
+      return {
+        success: false,
+        message: "Quiz result not found!",
+      };
+    }
+
+    await prisma.quizAttempt.delete({
+      where: {
+        id: attemptId,
+      },
+    });
+
+    return {
+      success: true,
+      message: "Quiz result deleted successfully!",
+    };
+  } catch (error) {
+    console.error("Error deleting user result:", error);
+
+    return {
+      success: false,
+      message: "Error in deleting user result!",
+    };
+  }
+};
