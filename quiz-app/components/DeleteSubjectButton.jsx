@@ -9,7 +9,6 @@ export default function DeleteSubjectButton({ subjectId }) {
   const [isPending, startTransition] = useTransition();
 
   function handleDelete(e) {
-    // Fix: Link ke andar hai (ya upar), navigation ko rokna zaroori hai
     e.preventDefault();
     e.stopPropagation();
 
@@ -19,7 +18,6 @@ export default function DeleteSubjectButton({ subjectId }) {
 
     startTransition(async () => {
       try {
-        // id se delete karo, name se nahi (unique aur reliable)
         await deleteSubject({ id: subjectId });
         toast.success("Subject deleted successfully");
       } catch (error) {

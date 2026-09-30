@@ -148,10 +148,6 @@ export async function submitQuiz({
       };
     }
 
-    /*
-     * केवल उन्हीं question IDs को accept करेंगे
-     * जो इसी subject के questions हैं।
-     */
     const questionIds = new Set(
       questions.map((question) => question.id)
     );

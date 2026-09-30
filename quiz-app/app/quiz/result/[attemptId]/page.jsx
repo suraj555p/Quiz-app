@@ -17,7 +17,6 @@ export default async function QuizResultPage({ params }) {
       redirect("/");
     }
 
-    // FIX: data.result me actual score/answers hain, data.userName me naam.
     const { result: quizResult, userName } = result.data;
 
     return (

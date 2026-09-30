@@ -15,7 +15,6 @@ export default function ScoreHistory({
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-10 dark:bg-slate-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-5xl">
-        {/* Page header */}
         <section className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
           <div className="absolute inset-x-0 top-0 h-1 bg-indigo-600" />
 
@@ -41,7 +40,6 @@ export default function ScoreHistory({
           </div>
         </section>
 
-        {/* Empty state */}
         {attempts.length === 0 ? (
           <div className="rounded-2xl border border-slate-200 bg-white p-10 text-center shadow-sm dark:border-slate-800 dark:bg-slate-900">
             <FileCheck2 className="mx-auto h-10 w-10 text-slate-300 dark:text-slate-600" />

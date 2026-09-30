@@ -39,10 +39,8 @@ export default async function SubjectCard({ subject }) {
       href={`/subjects/${id}`}
       className="group relative block w-full overflow-hidden rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-300 hover:-translate-y-1 hover:border-indigo-200 hover:shadow-xl hover:shadow-slate-200/60 dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-800 dark:hover:shadow-black/20"
     >
-      {/* Top Accent */}
       <div className="absolute inset-x-0 top-0 h-0.5 bg-indigo-600 opacity-70 transition-all duration-300 group-hover:h-1 group-hover:opacity-100" />
 
-      {/* Header */}
       <div className="mb-5 flex items-start justify-between gap-4">
         <div className="min-w-0">
           <p className="mb-1.5 text-[11px] font-semibold uppercase tracking-wider text-indigo-500 dark:text-indigo-400">
@@ -59,9 +57,7 @@ export default async function SubjectCard({ subject }) {
         </span>
       </div>
 
-      {/* Stats */}
       <div className="grid grid-cols-2 gap-2.5">
-        {/* Duration */}
         <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 transition-colors group-hover:border-slate-200 dark:border-slate-800 dark:bg-slate-800/70 dark:group-hover:border-slate-700">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-slate-600 shadow-sm dark:bg-slate-700 dark:text-slate-300">
@@ -79,7 +75,6 @@ export default async function SubjectCard({ subject }) {
           </div>
         </div>
 
-        {/* Questions */}
         <div className="rounded-xl border border-slate-100 bg-slate-50 p-3 transition-colors group-hover:border-slate-200 dark:border-slate-800 dark:bg-slate-800/70 dark:group-hover:border-slate-700">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-slate-600 shadow-sm dark:bg-slate-700 dark:text-slate-300">
@@ -97,7 +92,6 @@ export default async function SubjectCard({ subject }) {
           </div>
         </div>
 
-        {/* Positive Marking */}
         <div className="rounded-xl border border-emerald-100 bg-emerald-50/70 p-3 dark:border-emerald-900/50 dark:bg-emerald-950/30">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-emerald-600 shadow-sm dark:bg-emerald-950 dark:text-emerald-400">
@@ -115,7 +109,6 @@ export default async function SubjectCard({ subject }) {
           </div>
         </div>
 
-        {/* Negative Marking */}
         <div className="rounded-xl border border-red-100 bg-red-50/70 p-3 dark:border-red-900/50 dark:bg-red-950/30">
           <div className="flex items-center gap-2.5">
             <div className="flex h-8 w-8 items-center justify-center rounded-lg bg-white text-red-600 shadow-sm dark:bg-red-950 dark:text-red-400">
@@ -134,7 +127,6 @@ export default async function SubjectCard({ subject }) {
         </div>
       </div>
 
-      {/* Footer */}
       <div className="mt-5 flex items-center justify-between border-t border-slate-100 pt-4 dark:border-slate-800">
         <div className="flex items-center gap-1.5 text-xs font-medium text-slate-400">
           <CalendarDays className="h-3.5 w-3.5" />

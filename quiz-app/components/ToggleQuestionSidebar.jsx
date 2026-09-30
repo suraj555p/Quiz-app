@@ -141,7 +141,6 @@ export default function ToggleQuestionSidebar({
 
   return (
     <>
-      {/* Mobile toggle button */}
       <button
         type="button"
         onClick={() => setIsOpen(true)}
@@ -153,7 +152,6 @@ export default function ToggleQuestionSidebar({
         Questions
       </button>
 
-      {/* Mobile overlay: navbar के नीचे से शुरू होगा */}
       {isOpen && (
         <button
           type="button"
@@ -163,14 +161,12 @@ export default function ToggleQuestionSidebar({
         />
       )}
 
-      {/* Sidebar */}
       <aside
         aria-label="Question palette"
         className={`fixed left-0 top-16 z-40 flex h-[calc(100vh-64px)] w-[285px] flex-col border-r border-slate-200 bg-white shadow-2xl transition-transform duration-300 dark:border-slate-800 dark:bg-slate-900 lg:top-[72px] lg:h-[calc(100vh-72px)] ${
           isOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0`}
       >
-        {/* Header */}
         <div className="flex shrink-0 items-center justify-between border-b border-slate-100 px-5 py-5 dark:border-slate-800">
           <div>
             <div className="flex items-center gap-2 text-sm font-extrabold text-slate-900 dark:text-white">
@@ -196,7 +192,6 @@ export default function ToggleQuestionSidebar({
           </button>
         </div>
 
-        {/* Status summary */}
         <div className="grid shrink-0 grid-cols-2 gap-2 border-b border-slate-100 p-4 dark:border-slate-800">
           <div className="rounded-xl border border-emerald-100 bg-emerald-50 p-3 dark:border-emerald-900/50 dark:bg-emerald-950/30">
             <div className="flex items-center gap-2">
@@ -247,7 +242,6 @@ export default function ToggleQuestionSidebar({
           </div>
         </div>
 
-        {/* Question numbers */}
         <div className="min-h-0 flex-1 overflow-y-auto p-5">
           <p className="mb-4 text-xs font-extrabold uppercase tracking-wider text-slate-400">
             All Questions
@@ -283,7 +277,6 @@ export default function ToggleQuestionSidebar({
             </div>
           )}
 
-          {/* Legend */}
           <div className="mt-7 space-y-3 border-t border-slate-100 pt-5 dark:border-slate-800">
             <p className="text-xs font-extrabold uppercase tracking-wider text-slate-400">
               Status
@@ -311,7 +304,6 @@ export default function ToggleQuestionSidebar({
           </div>
         </div>
 
-        {/* Submit button */}
         <div className="shrink-0 border-t border-slate-100 bg-white p-4 dark:border-slate-800 dark:bg-slate-900">
           <button
             type="button"

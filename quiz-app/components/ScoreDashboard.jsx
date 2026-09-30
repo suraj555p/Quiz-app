@@ -41,7 +41,6 @@ export default function ScoreDashboard({
           Back to Subjects
         </Link>
 
-        {/* Score header */}
         <section className="relative overflow-hidden rounded-3xl border border-slate-200 bg-white p-6 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:p-8">
           <div className="absolute inset-x-0 top-0 h-1 bg-indigo-600" />
 
@@ -77,7 +76,6 @@ export default function ScoreDashboard({
           </div>
         </section>
 
-        {/* Stats */}
         <section className="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           <StatCard
             icon={<FileCheck2 className="h-5 w-5" />}
@@ -112,7 +110,6 @@ export default function ScoreDashboard({
           />
         </section>
 
-        {/* Question-wise result */}
         <section className="mt-8 space-y-5">
           {answers.map((answer, index) => (
             <QuestionReviewCard
@@ -156,7 +153,6 @@ function QuestionReviewCard({ answer, index }) {
 
   return (
     <article className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-      {/* Card header */}
       <div className="border-b border-slate-100 bg-slate-50/50 p-5 dark:border-slate-800 dark:bg-slate-800/40">
         <div className="flex items-start gap-3">
           <div
@@ -207,7 +203,6 @@ function QuestionReviewCard({ answer, index }) {
         </div>
       </div>
 
-      {/* Options */}
       <div className="p-5">
         <div className="space-y-3">
           {options.map((option) => {

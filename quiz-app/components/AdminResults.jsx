@@ -81,10 +81,8 @@ export default function AdminResults() {
  return (
   <div className="w-full">
 
-    {/* ================= DESKTOP TABLE ================= */}
     <div className="hidden overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm md:block">
 
-      {/* Header */}
       <div className="flex items-center justify-between border-b border-gray-200 px-6 py-5">
         <div>
           <h2 className="text-xl font-bold text-gray-900">
@@ -101,7 +99,6 @@ export default function AdminResults() {
         </div>
       </div>
 
-      {/* Table */}
       <div className="overflow-x-auto">
         <table className="w-full min-w-[1150px] text-left">
 
@@ -152,7 +149,6 @@ export default function AdminResults() {
                   className="transition-colors duration-200 hover:bg-gray-50"
                 >
 
-                  {/* User */}
                   <td className="px-6 py-5">
                     <div className="flex items-center gap-3">
 
@@ -187,14 +183,12 @@ export default function AdminResults() {
                     </div>
                   </td>
 
-                  {/* Subject */}
                   <td className="px-6 py-5">
                     <span className="inline-flex rounded-lg bg-gray-100 px-3 py-1.5 text-sm font-medium text-gray-700">
                       {result.subject?.subjectName || "Unknown"}
                     </span>
                   </td>
 
-                  {/* Score */}
                   <td className="px-6 py-5">
                     <span className="font-bold text-gray-900">
                       {result.score}
@@ -205,28 +199,24 @@ export default function AdminResults() {
                     </span>
                   </td>
 
-                  {/* Correct */}
                   <td className="px-6 py-5">
                     <span className="inline-flex min-w-[38px] justify-center rounded-full bg-green-50 px-3 py-1 text-sm font-semibold text-green-600">
                       {result.correctAnswers}
                     </span>
                   </td>
 
-                  {/* Wrong */}
                   <td className="px-6 py-5">
                     <span className="inline-flex min-w-[38px] justify-center rounded-full bg-red-50 px-3 py-1 text-sm font-semibold text-red-600">
                       {result.wrongAnswers}
                     </span>
                   </td>
 
-                  {/* Skipped */}
                   <td className="px-6 py-5">
                     <span className="inline-flex min-w-[38px] justify-center rounded-full bg-yellow-50 px-3 py-1 text-sm font-semibold text-yellow-600">
                       {result.skippedAnswers}
                     </span>
                   </td>
 
-                  {/* Date */}
                   <td className="px-6 py-5 text-sm text-gray-500">
                     {new Date(result.createdAt).toLocaleDateString(
                       "en-IN",
@@ -238,7 +228,6 @@ export default function AdminResults() {
                     )}
                   </td>
 
-                  {/* Delete */}
                   <td className="px-6 py-5">
                     <button
                       onClick={() => handleDelete(result.id)}
@@ -278,10 +267,8 @@ export default function AdminResults() {
     </div>
 
 
-    {/* ================= MOBILE ================= */}
     <div className="block md:hidden">
 
-      {/* Mobile Header */}
       <div className="mb-4 flex items-center justify-between">
 
         <div>
@@ -301,7 +288,6 @@ export default function AdminResults() {
       </div>
 
 
-      {/* Mobile Cards */}
       {results.length > 0 ? (
         <div className="space-y-4">
 
@@ -311,12 +297,10 @@ export default function AdminResults() {
               className="overflow-hidden rounded-2xl border border-gray-200 bg-white shadow-sm"
             >
 
-              {/* User Section */}
               <div className="flex items-center justify-between border-b border-gray-100 p-4">
 
                 <div className="flex min-w-0 items-center gap-3">
 
-                  {/* Profile */}
                   <div className="h-11 w-11 shrink-0 overflow-hidden rounded-full border border-gray-200 bg-indigo-100">
 
                     {result.user?.profile ? (
@@ -349,7 +333,6 @@ export default function AdminResults() {
 
                 </div>
 
-                {/* Score */}
                 <div className="ml-3 shrink-0 text-right">
                   <p className="text-lg font-bold text-gray-900">
                     {result.score}
@@ -363,7 +346,6 @@ export default function AdminResults() {
               </div>
 
 
-              {/* Subject */}
               <div className="px-4 pt-4">
 
                 <p className="mb-2 text-xs font-medium uppercase tracking-wide text-gray-400">
@@ -377,10 +359,8 @@ export default function AdminResults() {
               </div>
 
 
-              {/* Stats */}
               <div className="grid grid-cols-3 gap-2 p-4">
 
-                {/* Correct */}
                 <div className="rounded-xl bg-green-50 p-3 text-center">
                   <p className="text-lg font-bold text-green-600">
                     {result.correctAnswers}
@@ -392,7 +372,6 @@ export default function AdminResults() {
                 </div>
 
 
-                {/* Wrong */}
                 <div className="rounded-xl bg-red-50 p-3 text-center">
                   <p className="text-lg font-bold text-red-600">
                     {result.wrongAnswers}
@@ -404,7 +383,6 @@ export default function AdminResults() {
                 </div>
 
 
-                {/* Skipped */}
                 <div className="rounded-xl bg-yellow-50 p-3 text-center">
                   <p className="text-lg font-bold text-yellow-600">
                     {result.skippedAnswers}
@@ -418,7 +396,6 @@ export default function AdminResults() {
               </div>
 
 
-              {/* Footer */}
               <div className="flex items-center justify-between border-t border-gray-100 bg-gray-50 px-4 py-3">
 
                 <div>
@@ -439,7 +416,6 @@ export default function AdminResults() {
                 </div>
 
 
-                {/* Delete */}
                 <button
                   onClick={() => handleDelete(result.id)}
                   disabled={deletingId === result.id}
@@ -458,7 +434,6 @@ export default function AdminResults() {
         </div>
       ) : (
 
-        /* Mobile Empty State */
         <div className="rounded-2xl border border-gray-200 bg-white px-5 py-12 text-center shadow-sm">
 
           <div className="mx-auto flex h-14 w-14 items-center justify-center rounded-full bg-gray-100 text-2xl">

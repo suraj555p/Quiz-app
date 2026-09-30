@@ -44,7 +44,6 @@ export default function QuestionCard({
       <div className="h-1 bg-indigo-600" />
 
       <div className="p-5 sm:p-7">
-        {/* Question header */}
         <div className="mb-6 flex items-start justify-between gap-4">
           <div className="flex min-w-0 items-start gap-4">
             <div className="flex h-10 w-10 shrink-0 items-center justify-center rounded-xl bg-slate-900 text-sm font-extrabold text-white dark:bg-indigo-600">
@@ -70,7 +69,6 @@ export default function QuestionCard({
           )}
         </div>
 
-        {/* Options */}
         <div className="grid gap-3 sm:grid-cols-2">
           {options.map((option) => {
             const isSelected = selectedOption === option.number;
@@ -115,7 +113,6 @@ export default function QuestionCard({
           })}
         </div>
 
-        {/* Question actions */}
         <div className="mt-6 flex flex-wrap items-center justify-between gap-3 border-t border-slate-100 pt-4 dark:border-slate-800">
           <div className="flex items-center gap-2 text-xs font-medium text-slate-400">
             <Circle className="h-3.5 w-3.5" />

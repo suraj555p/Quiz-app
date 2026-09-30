@@ -165,7 +165,6 @@ function AdminDashboard() {
   return (
     <main className="min-h-screen bg-slate-50 px-4 py-8 dark:bg-slate-950 sm:px-6 lg:px-8">
       <div className="mx-auto max-w-7xl">
-        {/* Page Header */}
         <div className="relative mb-8 overflow-hidden rounded-3xl border border-slate-200 bg-white px-6 py-7 shadow-sm dark:border-slate-800 dark:bg-slate-900 sm:px-8">
           <div className="pointer-events-none absolute -right-20 -top-24 h-56 w-56 rounded-full bg-indigo-100/60 blur-3xl dark:bg-indigo-950/30" />
 
@@ -191,7 +190,6 @@ function AdminDashboard() {
               </p>
             </div>
 
-            {/* Question Counter */}
             <div className="flex w-fit items-center gap-3 rounded-2xl border border-slate-200 bg-slate-50 px-4 py-3 dark:border-slate-700 dark:bg-slate-800/70">
               <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm shadow-indigo-600/20">
                 <ListChecks className="h-5 w-5" />
@@ -216,12 +214,9 @@ function AdminDashboard() {
           </div>
         </div>
 
-        {/* Main Layout */}
         <div className="grid grid-cols-1 gap-6 lg:grid-cols-[360px_1fr]">
-          {/* LEFT - Paper Details */}
           <aside className="h-fit lg:sticky lg:top-24">
             <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              {/* Card Header */}
               <div className="border-b border-slate-100 px-5 py-5 dark:border-slate-800">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-50 text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
@@ -240,7 +235,6 @@ function AdminDashboard() {
                 </div>
               </div>
 
-              {/* Form */}
               <div className="space-y-4 p-5">
                 <div>
                   <label className={labelClass}>Subject Name</label>
@@ -329,7 +323,6 @@ function AdminDashboard() {
                 </div>
               </div>
 
-              {/* Progress */}
               <div className="border-t border-slate-100 px-5 py-5 dark:border-slate-800">
                 <div className="mb-2 flex items-center justify-between">
                   <span className="text-xs font-medium text-slate-500 dark:text-slate-400">
@@ -368,11 +361,8 @@ function AdminDashboard() {
             </div>
           </aside>
 
-          {/* RIGHT - Questions */}
           <section className="space-y-5">
-            {/* Add Question Card */}
             <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm dark:border-slate-800 dark:bg-slate-900">
-              {/* Header */}
               <div className="border-b border-slate-100 px-5 py-5 dark:border-slate-800 sm:px-6">
                 <div className="flex items-center gap-3">
                   <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-indigo-600 text-white shadow-sm shadow-indigo-600/20">
@@ -392,7 +382,6 @@ function AdminDashboard() {
               </div>
 
               <div className="p-5 sm:p-6">
-                {/* Question */}
                 <div>
                   <label className={labelClass}>Question</label>
 
@@ -406,7 +395,6 @@ function AdminDashboard() {
                   />
                 </div>
 
-                {/* Options */}
                 <div className="mt-5">
                   <label className={labelClass}>Answer Options</label>
 
@@ -431,7 +419,6 @@ function AdminDashboard() {
                   </div>
                 </div>
 
-                {/* Bottom Controls */}
                 <div className="mt-6 flex flex-col gap-4 border-t border-slate-100 pt-5 dark:border-slate-800 sm:flex-row sm:items-end">
                   <div className="sm:w-56">
                     <label className={labelClass}>Correct Option</label>
@@ -461,7 +448,6 @@ function AdminDashboard() {
               </div>
             </div>
 
-            {/* Question List */}
             {questionsList.length === 0 ? (
               <div className="flex min-h-[300px] flex-col items-center justify-center rounded-2xl border border-dashed border-slate-300 bg-white px-6 text-center dark:border-slate-700 dark:bg-slate-900">
                 <div className="mb-4 flex h-14 w-14 items-center justify-center rounded-2xl bg-slate-100 text-slate-400 dark:bg-slate-800 dark:text-slate-500">
@@ -498,12 +484,10 @@ function AdminDashboard() {
                     className="group rounded-2xl border border-slate-200 bg-white p-5 shadow-sm transition-all duration-200 hover:border-indigo-200 hover:shadow-md dark:border-slate-800 dark:bg-slate-900 dark:hover:border-indigo-800"
                   >
                     <div className="flex items-start gap-4">
-                      {/* Number */}
                       <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-xl bg-indigo-50 text-xs font-bold text-indigo-600 dark:bg-indigo-950/50 dark:text-indigo-400">
                         Q{q.questionNumber}
                       </div>
 
-                      {/* Content */}
                       <div className="min-w-0 flex-1">
                         <p className="text-sm font-semibold leading-relaxed text-slate-800 dark:text-slate-100">
                           {q.question}
@@ -544,7 +528,6 @@ function AdminDashboard() {
                         </div>
                       </div>
 
-                      {/* Remove */}
                       <button
                         onClick={() => handleRemoveQuestion(index)}
                         className="flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-slate-400 transition-colors hover:bg-red-50 hover:text-red-600 dark:hover:bg-red-950/30 dark:hover:text-red-400"
